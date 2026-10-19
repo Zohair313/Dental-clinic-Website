@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Phone, Calendar, Star, ShieldCheck, Clock, Award, ArrowRight, HeartPulse, CheckCircle2 } from 'lucide-react'
 import { CLINIC_INFO, STATS } from '../data/clinicInfo'
+import { getAssetUrl } from '../utils/assets'
 
 function AnimatedCounter({ value, suffix = '' }) {
   const [displayValue, setDisplayValue] = useState(0)
@@ -204,7 +205,7 @@ export default function Hero({ onOpenAppointment }) {
         >
           <div className="hero-image-frame">
             <img
-              src="/hero-clinic.jpg"
+              src={getAssetUrl('hero-clinic.jpg')}
               alt="The Western Clinic high-end reception and medical suites in DHA Phase 8, Karachi"
               className="hero-main-img"
               width="640"

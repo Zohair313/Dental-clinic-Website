@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Calendar, Clock, Award, Languages, ChevronRight, Check } from 'lucide-react'
 import { DOCTORS } from '../data/doctors'
 import FallbackAvatar from './FallbackAvatar'
+import { getAssetUrl } from '../utils/assets'
 
 function DoctorCard({ doctor, onBookDoctor, index }) {
   const [imageError, setImageError] = useState(false)
@@ -19,7 +20,7 @@ function DoctorCard({ doctor, onBookDoctor, index }) {
       <div className="doctor-image-container">
         {!imageError ? (
           <img
-            src={doctor.image}
+            src={getAssetUrl(doctor.image)}
             alt={`${doctor.name} - ${doctor.role}`}
             className="doctor-image"
             onError={() => setImageError(true)}

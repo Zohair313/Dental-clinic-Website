@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react'
+import { getAssetUrl } from '../utils/assets'
 
 export default function LightboxModal({
   items,
@@ -73,7 +74,7 @@ export default function LightboxModal({
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={currentItem.image}
+              src={getAssetUrl(currentItem.image)}
               alt={currentItem.title}
               className="lightbox-img"
             />

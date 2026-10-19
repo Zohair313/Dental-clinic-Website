@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { ZoomIn, Camera } from 'lucide-react'
 import { GALLERY_ITEMS } from '../data/gallery'
 import LightboxModal from './LightboxModal'
+import { getAssetUrl } from '../utils/assets'
 
 export default function Gallery() {
   const [lightboxOpen, setLightboxOpen] = useState(false)
@@ -51,7 +52,7 @@ export default function Gallery() {
             >
               <div className="gallery-img-wrapper">
                 <img
-                  src={item.image}
+                  src={getAssetUrl(item.image)}
                   alt={item.title}
                   className="gallery-thumbnail"
                   loading="lazy"

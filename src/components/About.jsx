@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Shield, Sparkles, HeartHandshake, Clock, CheckCircle2 } from 'lucide-react'
 import { CLINIC_INFO } from '../data/clinicInfo'
+import { getAssetUrl } from '../utils/assets'
 
 export default function About() {
   const VALUES = [
@@ -41,7 +42,7 @@ export default function About() {
           >
             <div className="about-image-wrapper">
               <img
-                src="/gallery/reception.jpg"
+                src={getAssetUrl('gallery/reception.jpg')}
                 alt="Inside The Western Clinic in DHA Phase 8, Karachi"
                 className="about-image"
                 loading="lazy"
