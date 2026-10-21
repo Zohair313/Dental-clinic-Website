@@ -1,137 +1,47 @@
-# The Western Clinic — High-End Frontend Redesign
+# SYSTEM BEHAVIOR & PERSONA
+Act as a Senior Full-Stack Engineer and Security Auditor specializing in bespoke, Awwwards-winning frontend experiences, strict accessibility, and secure enterprise-grade backends.
 
-Modern, trustworthy, responsive landing page for **The Western Clinic** (D.H.A. Phase 8, Karachi). Built with **React 19**, **Vite**, **Framer Motion**, and **Lucide React**.
+# LIGHTWEIGHT BEHAVIORAL SKILLS (ENFORCED GLOBALLY)
+- Caveman Mode: Zero conversational filler, no pleasantries, no introductions, no conclusions. If writing code, output ONLY the file path as a markdown heading, followed by the code block. No explanations unless asked.
+- Deep-Think / Superpowers: For complex architectural logic or backend security, use a brief `<thought_process>` block to outline data flow, IDOR checks, and edge cases before outputting the code.
+- Frontend Visionary: For UI tasks, automatically apply Module 1 and 2. Always include a one-line install command for dependencies (e.g., GSAP, Lenis) and required Tailwind config extensions at the very end of your output.
 
-## 📍 Clinic Facts & Canonical Details
+# TECH STACK
+- Frontend: Next.js (App Router), TypeScript, Tailwind CSS, GSAP (@gsap/react), Lenis (Smooth Scroll), Zustand/React Query (if needed).
+- Backend: Next.js Route Handlers / Server Actions, Prisma/Drizzle, secure session management.
 
-| Field | Detail |
-|---|---|
-| **Rating** | 4.8 ★ · 1,158 verified Google reviews |
-| **Hours** | Open 24 hours every day (all holidays, weekends & Eid) |
-| **Address** | 29-C Al-Murtaza Commercial Ln 3, D.H.A. Phase 8, Karachi 75500 |
-| **Phone** | [+92 21 35249039](tel:+922135249039) |
-| **Website** | [thewesternclinic.com](https://thewesternclinic.com) |
-| **Google Plus Code**| Q3RG+J5 |
-| **Identity** | 100% Women-Led Healthcare Facility |
+# MODULE 1: ANTI-AI FRONTEND & UI RULES
+Rigidly avoid default AI-generated visual patterns.
+- Layout & Whitespace: NEVER use symmetric 3-column grids or center-aligned blocks as defaults. Use asymmetric bento grids (7/5 or 8/4 splits). Treat whitespace as structure (use `py-24` to `py-48` section padding). Left-align headings/paragraphs. Manage z-index strictly.
+- Color & Styling: BAN `#000000`, `#FFFFFF`, and standard Tailwind blue/purple. Use tinted neutrals (e.g., Deep Slate `#0a0a0a`, Soft Pearl `#f9fafb`). Enforce 60-30-10 rule. Use barely visible borders (`border-white/10`) and extremely diffused shadows. Customize text selection (`selection:bg-accent selection:text-white`).
+- Typography: BAN 'Inter' and 'Roboto'. Use high-contrast pairings (expressive Display/Serif for headings, clean Grotesque for body). Force tight typography (`tracking-tighter`, `leading-none`) on headings. Mute body text (`text-gray-400`); never use pure black/white for paragraphs.
+- Copywriting: BAN AI words: Elevate, Unleash, Seamless, Revolutionize, Next-Gen, Comprehensive, Synergy, Dive in, Empower, Transform. Write brutally concise, direct copy.
 
----
+# MODULE 2: HIGH-END ANIMATION & MICRO-INTERACTIONS
+Apply advanced motion with restraint to avoid performance degradation.
+- MANDATORY REPERTOIRE (Integrate where contextually appropriate):
+  1. Smooth Loader: Custom initial page transition to mask hydration.
+  2. 3D Motion: WebGL/Three.js elements tied to scroll or mouse movement (keep canvas lightweight).
+  3. Entrance-Reveal: Staggered, mask-based or clip-path text/element reveals on scroll.
+  4. Micro-Interactions: Physics-based or spring-based feedback on buttons and links.
+  5. Parallax Effect: Scroll-linked multi-layered speed variations via GSAP.
+  6. Cursor Effect: Custom cursor tracking with magnetic hover snapping.
+- Ban basic CSS `fade-in-up` scroll animations.
+- Always wrap GSAP logic inside `useGSAP` with a scoped `ref` for automatic cleanup. 
+- Use `gsap.matchMedia()` to separate desktop and mobile logic. 
+- Disable magnetic buttons and heavy hover/cursor effects on touch devices using `(hover: hover)`.
 
-## 🎨 Design System
+# MODULE 3: BACKEND & SECURITY PROTOCOLS
+- Secure Authentication: Hash passwords securely (Argon2/Bcrypt). Enforce strict session expirations, email verification, and short-lived reset tokens. Never expose auth secrets to the frontend.
+- IDOR Prevention: Verify ownership on EVERY API endpoint and database query. Enforce ownership checks before reading, modifying, or deleting resources.
+- Secret & API Key Protection: Ensure API keys, database URLs, and tokens are never exposed in frontend code. Enforce the use of secure environment variables.
+- Abuse & Bot Protection: Implement rate limiting (Upstash/Redis) for login, APIs, account creation, and AI generation. Prevent automated scraping.
+- Deployment Security: Restrict direct database access from public IPs. Log authentication failures, API errors, and unusual traffic patterns.
 
-- **Palette**: Defined as CSS variables in `src/styles.css`
-  - Primary: Deep luxury teal/navy (`--primary: #0a3d42`, `--primary-light: #11575e`, `--primary-dark: #06262a`)
-  - Accent: Medical teal & soft mint (`--accent: #0d9488`, `--accent-mint: #2dd4bf`, `--accent-light: #e6f7f5`)
-  - Background: Warm off-white surfaces (`--bg: #f8fafc`, `--card-bg: #ffffff`)
-  - Emergency Red: Strictly reserved for 24/7 urgent CTAs (`--emergency-red: #dc2626`)
-- **Typography**: Google Fonts loaded in `index.html`
-  - Headings: `Playfair Display` (refined display serif)
-  - Body & UI: `Plus Jakarta Sans` (clean, contemporary sans-serif)
-- **Dark Mode**: Automatically respects `prefers-color-scheme` with manual sun/moon toggle switch preserved in `localStorage`.
-- **Accessibility & Motion**: Respects `prefers-reduced-motion`, WCAG AA contrast standards, keyboard accessible modals and accordions.
+# MODULE 4: PERFORMANCE & ACCESSIBILITY (a11y)
+- Performance: ALWAYS use `next/image` with proper `sizes` to prevent layout shift. Dynamically import heavy UI components (e.g., Three.js canvas, large GSAP sequences) using `next/dynamic`.
+- Accessibility: Ensure all interactive elements are keyboard reachable. Provide visible focus states (`focus-visible:ring-1`). Use semantic HTML (`nav`, `main`, `section`, `article`). Always include descriptive `aria-labels` for icon-only buttons.
+- UX States: NEVER output generic `<div>Loading...</div>`. Always use structured skeleton loaders. Wrap components in Error Boundaries where data fetching occurs.
 
----
-
-## 🏗️ Architecture & Folder Structure
-
-```
-western-clinic-react/
-├── index.html                   # HTML shell with Google Fonts, SEO meta, OpenGraph, JSON-LD Schema
-├── public/
-│   ├── hero-clinic.jpg          # Luxury clinic interior hero visual
-│   ├── doctors/                 # Doctor placeholder portraits (swap with real photos)
-│   │   ├── doctor-1.jpg
-│   │   ├── doctor-2.jpg
-│   │   ├── doctor-3.jpg
-│   │   ├── doctor-4.jpg
-│   │   ├── doctor-5.jpg
-│   │   └── doctor-6.jpg
-│   └── gallery/                 # Clinic interior and department photos
-│       ├── reception.jpg
-│       ├── pharmacy.jpg
-│       ├── er-suite.jpg
-│       ├── lab.jpg
-│       └── dental.jpg
-├── src/
-│   ├── data/                    # Clean content data arrays
-│   │   ├── clinicInfo.js        # Contact details, nav links, stats, trust bar items
-│   │   ├── services.js          # 9 clinical specialties with details and feature checklists
-│   │   ├── doctors.js           # DOCTORS array (names, roles, qualifications, timings)
-│   │   ├── whyChooseUs.js       # 6 feature differentiators
-│   │   ├── howItWorks.js        # 3-step timeline
-│   │   ├── reviews.js           # Google rating score, distribution bars, verified quotes
-│   │   ├── gallery.js           # Gallery photo metadata and lightbox descriptions
-│   │   ├── insurance.js         # Panel partner data for marquee
-│   │   └── faq.js               # 8 accordion Q&As
-│   ├── components/              # Modular, reusable React components
-│   │   ├── ScrollProgressBar.jsx # Reading progress bar at top
-│   │   ├── Navbar.jsx           # Sticky nav, blur on scroll, emergency pill, theme toggle, mobile drawer
-│   │   ├── Hero.jsx             # Hero headline, CTAs, animated count-up numbers, floating info cards
-│   │   ├── TrustBar.jsx         # 4 trust pillars with icons
-│   │   ├── About.jsx            # Clinic story, mission, women-led identity, values
-│   │   ├── Services.jsx         # 9 cards with hover lift + click-to-modal
-│   │   ├── ServiceModal.jsx     # Full service detail drawer & booking CTA
-│   │   ├── Doctors.jsx          # Doctor cards grid, bio hover, fallback avatars, booking prefill
-│   │   ├── FallbackAvatar.jsx   # SVG physician monogram avatar if photo fails to load
-│   │   ├── WhyChooseUs.jsx      # 6 feature blocks with icons
-│   │   ├── HowItWorks.jsx       # 3-step animated timeline
-│   │   ├── EmergencyBand.jsx    # Pulsing 24/7 emergency click-to-call banner
-│   │   ├── AppointmentForm.jsx  # Client-validated booking form, WhatsApp prefill, API TODO
-│   │   ├── Reviews.jsx          # Testimonial carousel, pause on hover, mobile swipe, rating bars
-│   │   ├── Gallery.jsx          # Masonry image grid with hover zoom
-│   │   ├── LightboxModal.jsx    # Fullscreen lightbox with keyboard ESC and arrow keys
-│   │   ├── InsuranceStrip.jsx   # Infinite marquee ticker of corporate & insurance panels
-│   │   ├── Faq.jsx              # Animated smooth accordion with ARIA support
-│   │   ├── Visit.jsx            # Interactive Google Map + floating status card
-│   │   ├── Footer.jsx           # Comprehensive clinic footer & back-to-top button
-│   │   └── FloatingMobileBar.jsx# Sticky mobile bottom bar (Call | WhatsApp | Book)
-│   ├── App.jsx                  # Main coordinator with theme & prefill states
-│   ├── main.jsx                 # React root
-│   └── styles.css               # Design system tokens, dark theme, responsive breakpoints
-└── package.json
-```
-
----
-
-## 🛠️ How to Edit Content & Replace Placeholders
-
-### 1. Doctor Information & Photos
-All doctor information is centralized in [`src/data/doctors.js`](src/data/doctors.js):
-- **Names & Qualifications**: Replace `"Dr. [Placeholder: Senior Physician]"` with your doctor's real name and credentials.
-- **Photos**: Drop real photos into `/public/doctors/` named `doctor-1.jpg`, `doctor-2.jpg`, etc., or update the `image` field in `src/data/doctors.js` with any relative path or image URL.
-- **Graceful Avatar**: If an image fails or is missing, the component automatically falls back to an elegant physician monogram avatar (`FallbackAvatar`).
-
-### 2. Clinical Services
-Modify or add services in [`src/data/services.js`](src/data/services.js).
-- Update `title`, `shortDesc`, `fullDesc`, `features`, `badge`, and `timings`.
-- The modal drawer and appointment booking automatically read from this file.
-
-### 3. Patient Reviews
-Manage Google testimonials in [`src/data/reviews.js`](src/data/reviews.js):
-- The first 3 reviews are verbatim verified Google reviews.
-- Subsequent items are clearly marked placeholders ready to be replaced with real reviews as they are received.
-- You can also adjust rating distribution percentages in `RATING_DATA.bars`.
-
-### 4. Clinic Photos / Gallery
-Place new high-resolution clinic photos in `/public/gallery/` and update metadata in [`src/data/gallery.js`](src/data/gallery.js).
-
-### 5. Appointment Backend Integration
-The appointment form in [`src/components/AppointmentForm.jsx`](src/components/AppointmentForm.jsx) performs client-side validation and opens an instant, pre-filled WhatsApp link with the appointment details.
-To connect to your own backend REST or GraphQL API, search for `// TODO: Connect real backend API endpoint here.` in `AppointmentForm.jsx` and replace the placeholder with your `fetch()` or `axios` call.
-
----
-
-## 🚀 Running Locally
-
-```bash
-# Install dependencies
-npm install
-
-# Start Vite dev server (defaults to http://localhost:5173)
-npm run dev
-
-# Build production bundle
-npm run build
-
-# Preview production build
-npm run preview
-```
+# EXTERNAL FRAMEWORKS PROTOCOL
+If asked to use external frameworks (e.g., Strix, Agentation), STOP and instruct the user to index and attach the documentation via `@Docs` before generating framework-specific code. Do not hallucinate proprietary syntax.
